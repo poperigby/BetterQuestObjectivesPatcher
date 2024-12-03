@@ -4,6 +4,9 @@ using Mutagen.Bethesda.Plugins.Cache;
 using Mutagen.Bethesda.Plugins.Records;
 using Mutagen.Bethesda.Synthesis;
 using Mutagen.Bethesda.Skyrim;
+using System.Threading.Tasks;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace BetterQuestObjectivesPatcher
 {
@@ -42,7 +45,7 @@ namespace BetterQuestObjectivesPatcher
             
             foreach (var questCtx in quests)
             {
-                Console.WriteLine($"Processing mod ${questCtx.ModKey.FileName}");
+                System.Console.WriteLine($"Processing mod ${questCtx.ModKey.FileName}");
                 var ctxMod = state.LoadOrder.GetIfEnabledAndExists(questCtx.ModKey);
                 if (IsBqoPatch(ctxMod))
                 {
@@ -66,7 +69,7 @@ namespace BetterQuestObjectivesPatcher
                 {
                     baseGameContext = modContexts.First(context => IsBasicMaster(context.ModKey));
                 }
-                catch (InvalidOperationException e)
+                catch (System.InvalidOperationException e)
                 {
                     continue;
                 }
@@ -79,7 +82,7 @@ namespace BetterQuestObjectivesPatcher
                         return IsBqoPatch(modInContextListing.Mod!);
                     });
                 }
-                catch (InvalidOperationException e)
+                catch (System.InvalidOperationException e)
                 {
                     continue;
                 }
